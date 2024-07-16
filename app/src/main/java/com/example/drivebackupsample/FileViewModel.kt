@@ -21,6 +21,7 @@ import android.content.ContentResolver
 import android.content.Intent
 import android.net.Uri
 import android.provider.OpenableColumns
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -28,6 +29,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.workDataOf
+import com.google.api.client.json.gson.GsonFactory
 import com.google.api.services.drive.Drive
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -60,6 +62,7 @@ class FileViewModel(application: Application) : AndroidViewModel(application) {
         viewModelScope.launch {
             val fileList = driveService.getAllFiles().files
             _numberOfFilesOwned.value = fileList.size
+            Log.d("FileViewModel", "getNumberOfFilesOwnedByApp: ${GsonFactory.getDefaultInstance().toPrettyString(fileList)}")
         }
     }
 

@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
      */
     private val filePickerIntent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
         addCategory(Intent.CATEGORY_OPENABLE)
-        type = ContentType.TEXT_PLAIN.mimeType
+        type = ContentType.APPLICATION_OCTET_STREAM.mimeType
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -122,7 +122,6 @@ class MainActivity : AppCompatActivity() {
             }
     }
 
-
     private fun initializeUIElements() {
         uploadFileButton = findViewById(R.id.upload_files_button)
         uploadFileBackgroundButton = findViewById(R.id.upload_files_background_button)
@@ -144,6 +143,13 @@ class MainActivity : AppCompatActivity() {
             val formattedString = getString(R.string.number_of_files, numOfFiles)
             numberOfFilesTextView.text = formattedString
         })
+
+        findViewById<Button>(R.id.sign_out).setOnClickListener {
+            GoogleSignIn.getClient(this, GoogleSignInOptions.DEFAULT_SIGN_IN).signOut()
+        }
+        findViewById<Button>(R.id.sign_in).setOnClickListener {
+            requestSignIn()
+        }
     }
 
     companion object {

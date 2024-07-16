@@ -129,7 +129,7 @@ suspend fun Drive.getAppFolder(): FileList {
 fun FileList.getFirst(): File = files[0]
 
 object DriveContentType {
-    val DRIVE_FOLDER = ContentType.create(
+    val DRIVE_FOLDER: ContentType = ContentType.create(
         "application/vnd.google-apps.folder",
         Consts.ISO_8859_1
     )
