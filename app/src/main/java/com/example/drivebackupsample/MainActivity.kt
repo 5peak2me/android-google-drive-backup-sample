@@ -66,6 +66,7 @@ class MainActivity : AppCompatActivity() {
         resultCode: Int,
         resultData: Intent?
     ) {
+        println("resultCode: $resultCode")
         if (resultData == null || resultCode != Activity.RESULT_OK)
             return super.onActivityResult(requestCode, resultCode, resultData)
 
